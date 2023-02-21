@@ -1,0 +1,47 @@
+= render(ModalComponent.new(title: 'Comments')) do
+  = turbo_stream_from(:comments)
+  = turbo_stream_from(:changes)
+
+  .column.gap-y-6
+    .cell-auto.gap-y-2
+      h2.font-medium.text-lg.text-violet-500
+        = @project.name
+
+      p.prose.prose-sm.text-slate-400
+        = @project.description
+
+    .cell.bg-gray-50.pl-6.p-4.rounded-lg
+      .row.items-center
+        .cell
+          p.text-slate-500.text-sm.
+            = 'Change Status'
+
+        = form_for(Change.new, remote: true, data: { controller: 'change' }) do |form|
+          = form.hidden_field(:project_id, value: @project.id)
+          = form.select(:current, options_for_select(Project.statuses.keys, @project.status), { }, data: { action: 'change->change#submit' }, class: 'text-xs rounded-md border-none')
+
+    .cell.gap-y-4
+      .row.items-center.gap-x-2
+        = fluent('comment', class: 'w-6 h-6 text-slate-300')
+
+        h2.text-lg.text-slate-500
+          = @project.comments_count
+          span.font-light= " Comment".pluralize(@project.comments_count)
+
+          - if @project.changes_count > 0
+
+            span.text-sm
+              = ' and '
+              span.font-base= @project.changes_count
+              span.font-light= " Changes".pluralize(@project.changes_count)
+
+      .column.border.pl-6.p-4.rounded-lg
+        .cell-auto.p-4.mb-4.-m-4.-ml-6.border-b.sticky.-top-12.bg-white.rounded-t-lg
+          == render('form', comment: @project.comments.new)
+
+        = turbo_frame_tag(:comments, class: 'column gap-y-0.5') do
+
+          p.-ml-2.text-sm.text-slate-400.hidden class='only:block'
+            = 'No Comments here! Be the first to comment.'
+
+          = render(@comments)

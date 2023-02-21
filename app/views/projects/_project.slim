@@ -1,0 +1,40 @@
+= turbo_frame_tag(project, class: 'col-span-4 border border-slate-100 shadow-sm rounded-xl p-0.5 hover:shadow-md') do
+
+	.column.h-full.gap-y-4
+		.cell.p-6
+			.column.h-full.gap-y-2
+				.cell-auto
+					.row.items-baseline.gap-x-2
+						.cell
+							.row.items-center.gap-x-2
+								.cell-auto
+									p.text-slate-500.font-medium.border.px-1.py-1.rounded.leading-none class='text-[.6em]'
+										= project.status.humanize.upcase
+
+								.cell
+									h2.font-medium.text-lg.text-violet-500.leading-none
+										= project.name
+
+						.cell-auto
+							= link_to(edit_project_path(project), class: 'text-white row items-center gap-x-1 rounded-md bg-blue-500 px-2 py-1 text-xs') do
+								= fluent('edit', class: 'w-3 h-3 text-white')
+								= 'Edit'
+
+				p.prose.prose-sm.text-slate-400.mt-2
+					= project.description
+
+		.cell-auto.bg-gray-50.px-6.py-4 class='rounded-[.6em]'
+			.row.items-center class='md:column md:items-start lg:row lg:items-center'
+				.cell
+					.flex.items-center.gap-x-1
+						= fluent('comment', class: 'w-4 h-4 text-slate-400')
+
+						= link_to(project_comments_path(project), data: { 'turbo-frame': :modal }, class: 'text-sm text-blue-500 hover:font-medium') do
+							== project.comments_count
+							span.font-light= " Comment".pluralize(project.comments_count)
+
+				- if project.comments_count > 0
+
+					.cell-auto
+						p.text-xs.text-slate-500.font-light
+							== "<strong>#{ project.latest_comment.user.name }</strong> on <i>#{ l(project.latest_comment.created_at, format: :short) }</i>"

@@ -1,0 +1,15 @@
+= content_for(:streams) do
+  = turbo_stream_from(:projects)
+
+.cell-auto.gap-y-6
+  .row.items-baseline
+    .cell
+      h1.text-xl.font-medium
+        = @projects.count
+        span.font-light= " Project".pluralize(@projects.count)
+
+    .cell-auto
+      = link_to 'New project', new_project_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"
+
+  = turbo_frame_tag(:projects, class: 'grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-6') do
+    = render(@projects)

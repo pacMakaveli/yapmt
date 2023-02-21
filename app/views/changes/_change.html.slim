@@ -1,0 +1,18 @@
+= turbo_frame_tag(change, class: 'cell-auto bg-gray-50 rounded-lg px-4 py-3') do
+
+  .row.gap-x-2
+    .cell-auto.w-8.h-8.rounded-full.bg-white.-ml-8.p-1
+      = image_tag(change.user.avatar, class: 'w-full h-full')
+
+    .cell.gap-y-1
+      .row.pt-2
+        .cell
+          p.text-xs.text-slate-700
+            == "<strong>#{ change.user.name }</strong> made a Change"
+
+        .cell-auto
+          p.text-xs.text-slate-400.italic
+            = l(change.created_at, format: :short)
+
+      p.text-sm.text-slate-500
+        == "Project Status changed from <i><strong>#{ change.from&.humanize }</strong></i> to <i><strong>#{ change.to&.humanize }</strong></i>"

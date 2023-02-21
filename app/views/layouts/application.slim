@@ -1,0 +1,41 @@
+/ <!--<!DOCTYPE html>-->
+html
+	head
+		title= '(yet) Another Project Management Tool'
+
+		meta name="viewport" content="width=device-width,initial-scale=1"
+
+		= csrf_meta_tags
+		= csp_meta_tag
+
+		= stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
+		/ = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+
+		= javascript_importmap_tags
+		= hotwire_livereload_tags if Rails.env.development?
+
+	body.relative
+		= turbo_frame_tag(:modal)
+		= yield(:streams)
+
+		- unless logged_in?
+
+			div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true"
+				div class="flex min-h-screen sm:block sm:p-0"
+					div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
+
+					.column.container.mx-auto.transform.transition-all.p-6 class='md:px-0 md:py-12'
+						.cell
+						.cell-auto.rounded-xl.bg-white.p-6 class='md:p-12'
+							h2.font-medium.text-lg.text-slate-600
+								= 'Hey there stranger!'
+
+							p.text-sm.italic.text-slate-500
+								= 'One must have a name before adventuring into the unknown.'
+
+							= form_with(model: User.new, data: { turbo: false }, class: 'row items-center gap-x-2 mt-6') do |f|
+								= f.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", placeholder: "What should we call you?"
+								= f.submit('Save', class: 'inline-flex py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500')
+
+		main.p-6.container.mx-auto.column.gap-y-12 class='md:px-0 md:py-12'
+			= yield

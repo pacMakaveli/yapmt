@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://rsms.me/inter/inter.css');
+
+.fluent path { @apply fill-current; }
+
+@layer components {
+  .column { @apply flex flex-col; }
+  .column-reverse { @apply flex flex-col-reverse; }
+
+  .md\:column { @apply md:flex md:flex-col; }
+  .md\:column-reverse { @apply md:flex md:flex-col-reverse; }
+
+  .row { @apply flex flex-row; }
+  .row-reverse { @apply flex flex-row-reverse; }
+
+  .md\:row { @apply md:flex md:flex-row; }
+  .md\:row-reverse { @apply md:flex md:flex-row-reverse; }
+
+  [class*='cell']:not(.hidden) { @apply flex flex-col; }
+  .md\:[class*='cell']:not(.hidden) { @apply md:flex md:flex-col; }
+
+  .cell-1:not(.hidden)    { @apply flex-initial grow-0 w-1/12; }
+  .cell-2:not(.hidden)    { @apply flex-initial grow-0 w-2/12; }
+  .cell-3:not(.hidden)    { @apply flex-initial grow-0 w-3/12; }
+  .cell-4:not(.hidden)    { @apply flex-initial grow-0 w-4/12; }
+  .cell-5:not(.hidden)    { @apply flex-initial grow-0 w-5/12; }
+  .cell-6:not(.hidden)    { @apply flex-initial grow-0 w-6/12; }
+  .cell-7:not(.hidden)    { @apply flex-initial grow-0 w-7/12; }
+  .cell-8:not(.hidden)    { @apply flex-initial grow-0 w-8/12; }
+  .cell-9:not(.hidden)    { @apply flex-initial grow-0 w-9/12; }
+  .cell-10:not(.hidden)    { @apply flex-initial grow-0 w-10/12; }
+  .cell-11:not(.hidden)    { @apply flex-initial grow-0 w-11/12; }
+
+  .md\:cell-1:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-1/12; }
+  .md\:cell-2:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-2/12; }
+  .md\:cell-3:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-3/12; }
+  .md\:cell-4:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-4/12; }
+  .md\:cell-5:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-5/12; }
+  .md\:cell-6:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-6/12; }
+  .md\:cell-7:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-7/12; }
+  .md\:cell-8:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-8/12; }
+  .md\:cell-9:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-9/12; }
+  .md\:cell-10:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-10/12; }
+  .md\:cell-11:not(.hidden)    { @apply md:flex-initial md:grow-0 md:w-11/12; }
+
+  .cell:not(.hidden) { @apply flex-grow; }
+  .cell-auto:not(.hidden) { @apply grow-0 flex-auto w-auto; }
+  .cell-full:not(.hidden) { @apply flex-1 }
+
+  .md\:cell:not(.hidden) { @apply md:flex-grow; }
+  .md\:cell-auto:not(.hidden) { @apply md:grow-0 md:flex-auto md:w-auto; }
+  .md\:cell-full:not(.hidden) { @apply md:flex-1 }
+}
+
+.modal {
+  @apply fixed w-screen h-screen top-0 left-0 flex items-end place-content-end p-12 z-10;
+}
+
+.modal-backdrop {
+  @apply bg-slate-500 bg-opacity-10 w-full h-full absolute top-0 left-0 z-20;
+}
+
+.modal-body {
+  @apply overflow-y-scroll relative w-screen md:w-3/4 lg:w-1/2 h-full bg-white shadow-lg border-slate-300 z-30 rounded-xl p-12;
+}
+
+
+form { @apply m-0; }
