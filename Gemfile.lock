@@ -140,6 +140,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.14.2-x86_64-linux)
+      racc (~> 1.4)
     pg (1.4.5)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -209,6 +211,8 @@ GEM
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.23-arm64-darwin)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.23-x86_64-linux)
+      railties (>= 6.0.0)
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.11)
@@ -223,8 +227,6 @@ GEM
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
-    view_components (0.1.0)
-      rails
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -244,6 +246,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
@@ -268,7 +271,6 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   view_component (~> 2.82)
-  view_components (~> 0.1.0)
   web-console
   webdrivers
 
