@@ -22,7 +22,7 @@ class Project < ApplicationRecord
 
   # Scopes
   #
-  default_scope { order(created_at: :asc) }
+  default_scope { order(created_at: :desc) }
 
   # Callbacks
   #
@@ -31,7 +31,7 @@ class Project < ApplicationRecord
   end
 
   def latest_comment
-    comments.order(created_at: :asc).last
+    comments.order(created_at: :desc).first
   end
 
   def activities
